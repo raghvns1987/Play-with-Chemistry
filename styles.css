@@ -11,9 +11,10 @@ body {
     line-height: 1.6;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
-    padding: 20px;
+    padding: 10px;
+    margin: 0;
 }
 
 .game-container {
@@ -25,19 +26,25 @@ body {
 
 .main-content {
     display: flex;
+    flex-direction: column;
     gap: 20px;
-    align-items: flex-start;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
 }
 
 .game-area {
     flex: 2;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    order: 2;
 }
 
 .combos-panel {
@@ -45,12 +52,13 @@ body {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    position: sticky;
-    top: 20px;
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
-    min-width: 300px;
+    padding: 15px;
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+    width: 100%;
+    box-sizing: border-box;
+    order: 1;
 }
 
 .combos-panel h2 {
@@ -150,11 +158,13 @@ h1 {
 
 .periodic-table {
     display: grid;
-    grid-template-columns: repeat(18, 30px);
-    gap: 4px;
+    grid-template-columns: repeat(18, 20px);
+    gap: 2px;
     min-width: 100%;
     width: fit-content;
-    padding: 5px;
+    padding: 3px;
+    transform: scale(0.9);
+    transform-origin: 0 0;
 }
 
 .element {
@@ -278,6 +288,88 @@ button:disabled {
     background-color: #bdc3c7;
     cursor: not-allowed;
     transform: none;
+}
+
+/* Mobile Responsive Styles */
+@media (min-width: 768px) {
+    body {
+        padding: 20px;
+        align-items: center;
+    }
+    
+    .main-content {
+        flex-direction: row;
+        align-items: flex-start;
+        max-width: 1400px;
+    }
+    
+    .combos-panel {
+        position: sticky;
+        top: 20px;
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+        min-width: 250px;
+        order: 2;
+    }
+    
+    .game-area {
+        order: 1;
+        padding: 20px;
+    }
+    
+    .periodic-table {
+        grid-template-columns: repeat(18, 30px);
+        gap: 4px;
+        transform: none;
+        padding: 5px;
+    }
+}
+
+/* Adjust controls for mobile */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.controls .btn {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    flex: 1 1 calc(50% - 10px);
+    min-width: 120px;
+    text-align: center;
+}
+
+/* Make modals more mobile-friendly */
+.modal-content {
+    width: 95%;
+    max-width: 500px;
+    margin: 20px auto;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Adjust element sizes for mobile */
+.element {
+    width: 18px;
+    height: 18px;
+    font-size: 6px;
+}
+
+.element .symbol {
+    font-size: 8px;
+}
+
+/* Improve touch targets */
+button, .element {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent text size adjustment on mobile */
+html {
+    -webkit-text-size-adjust: 100%;
 }
 
 .result {
